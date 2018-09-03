@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    td select,
+    td input {
+      width: 150px;
+    }
+
+    #diagram td {
+      vertical-align: bottom;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #diagram div {
+      margin: auto;
+      transition: all .3s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  
+  <form name="calculator">
+    Калькулятор процентов, из расчёта <input type="text" name="percent" id="" value="12" /> % годовых.
+    <table>
+      <tr>
+        <td>Сумма</td>
+        <td>
+          <input name="money" type="text" value="10000">
+        </td>
+      </tr>
+      <tr>
+        <td>Срок в месяцах</td>
+        <td>
+          <select name="months">
+            <option value="3">3 (минимум)</option>
+            <option value="6">6 (полгода)</option>
+            <option value="12" selected>12 (год)</option>
+            <option value="18">18 (1.5 года)</option>
+            <option value="24">24 (2 года)</option>
+            <option value="30">30 (2.5 года)</option>
+            <option value="36">36 (3 года)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>С капитализацией</td>
+        <td>
+          <input name="capitalization" type="checkbox">
+        </td>
+      </tr>
+    </table>
+
+
+  </form>
+
+
+  <table id="diagram">
+    <tr>
+      <th>Было:</th>
+      <th>Станет:</th>
+    </tr>
+    <tr>
+      <th id="money-before"></th>
+      <th id="money-after"></th>
+    </tr>
+    <tr>
+      <td>
+        <div style="background: red;width:40px;height:100px"></div>
+      </td>
+      <td>
+        <div style="background: green;width:40px;height:0" id="height-after"></div>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    // вспомогательная функция для получения символа из события keypress
+    // (вдруг понадобится))
+    
+    let form = document.forms.calculator;
+    let money = form.elements.money;
+    let month = form.elements.months;
+    let percent = form.elements.percent;
+    let percentNum = percent.value * 0.01;
+    let capit = form.elements.capitalization;
+    let capitBool = capit.checked;
+    let divBefore = document.getElementsByTagName('div')[0];
+    let divAfter = document.getElementById('height-after');
+    let before = document.getElementById('money-before');
+    let after = document.getElementById('money-after');
+    
+    
+    
+    function getChar(event) {
+      if (event.which == null) {
+        if (event.keyCode < 32) return null;
+        return String.fromCharCode(event.keyCode) // IE
+      }
+
+      if (event.which != 0 && event.charCode != 0) {
+        if (event.which < 32) return null;
+        return String.fromCharCode(event.which) // остальные
+      }
+
+      return null; // специальная клавиша
+    }
+    
+    function percentCount(money, time, perc) {
+      money = parseInt(money) || 0;
+      if (!capitBool) easyP(money, time, perc);
+      else hardP(money, time, perc);
+    }
+    
+    function easyP(money, time, perc) {
+      let answ = Math.round(money * (1 + (time/12) * perc ));
+      divAfter.style.height = (answ / money) * 100 + 'px';
+      showNumber(money, answ);
+    }
+    
+    function hardP(money, time, perc) {
+      let answ = Math.round(money * Math.pow((1+perc), time/12));
+      divAfter.style.height = (answ / money) * 100 + 'px';
+      showNumber(money, answ);
+    }
+    
+    function showNumber(beforeN, afterN) {
+      before.innerHTML = beforeN;
+      after.innerHTML = afterN;
+    }
+    
+    percentCount(money.value, month.value, percentNum);
+    
+    /*money.onkeypress = function(e) {
+      let char = getChar(e);
+      if (isNaN(char) && !e.ctrlKey || e.altKey || char == null) {
+        return false;
+      }
+    }*/
+    
+    percent.oninput = function() {
+      this.value = parseInt(this.value) || 0;
+      percentNum = this.value * 0.01;
+      percentCount(money.value, month.value, percentNum);
+    }
+    
+   /* money.oninput = function() {
+      percentCount(money.value, month.value, percentNum);
+    }*/
+    
+    month.oninput = function() {
+      percentCount(money.value, month.value, percentNum);
+    }
+    
+    capit.onchange = function() {
+      capitBool = this.checked;
+      percentCount(money.value, month.value, percentNum);
+    }
+    
+
+    // ваш код...
+  </script>
+
+
+</body>
+
+</html>
