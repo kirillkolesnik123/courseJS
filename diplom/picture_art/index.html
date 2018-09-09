@@ -93,11 +93,11 @@
 			</div>
 			<div class=row>
 				<div class=col-md-7>
-					<div class=main-slider>
-						<div class=main-slider-item>
+					<div class=main-slider >
+						<div class="main-slider-item animated" >
 							<img src=img/main-1.png alt>
 						</div>
-						<div class=main-slider-item>
+						<div class="main-slider-item animated">
 							<img src=img/main-2.png alt>
 						</div>
 					</div>
@@ -143,56 +143,56 @@
 			<p class=p-heading>Портрет на холсте</p>
 			<h2>Популярные стили рисунка</h2>
 			<div class=row>
-				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-1">
 					<div class=styles-block>
 						<img src=img/styles-1.jpg alt>
 						<h4>Маслом</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-1">
 					<div class=styles-block>
 						<img src=img/styles-2.jpg alt>
 						<h4>Акварелью</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-1">
 					<div class=styles-block>
 						<img src=img/styles-3.jpg alt>
 						<h4>Карандашом</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-1">
 					<div class=styles-block>
 						<img src=img/styles-4.jpg alt>
 						<h4>Ручкой</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-2">
 					<div class=styles-block>
 						<img src=img/styles-5.jpg alt>
 						<h4>Пастелью</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-2">
 					<div class=styles-block>
 						<img src=img/styles-6.jpg alt>
 						<h4>Поп-арт</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-2">
 					<div class=styles-block>
 						<img src=img/styles-7.png alt>
 						<h4>Фотомозаика</h4>
 						<a href>Подробнее</a>
 					</div>
 				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
+				<div class="col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1 styles-2">
 					<div class=styles-block>
 						<img src=img/styles-8.jpg alt>
 						<h4>Шарж</h4>
@@ -200,7 +200,7 @@
 					</div>
 				</div>
 			</div>
-			<button class="button button-transparent button-styles">Посмотреть больше стилей</button>
+			<button id = 'styleButton' class="button button-transparent button-styles">Посмотреть больше стилей</button>
 		</div>
 		<img class=paints src=img/paints.png alt>
 	</section>
@@ -237,26 +237,29 @@
 						</div>
 						<select id=size>
 							<option >Выберите размер картины</option>
-							<option >40x50</option>
-							<option >50x70</option>
-							<option >70x70</option>
-							<option >70x100</option>
+							<option value="500">40x50</option>
+							<option value="800">50x70</option>
+							<option value="1000">70x70</option>
+							<option value="1300">70x100</option>
 						</select>
 						<select id=material>
 							<option >Выберите материал картины</option>
-							<option   title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
-							<option   title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
-							<option  title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
+							<option value="1000" title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом." >Холст из волокна</option>
+							<option value="2000"  title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
+							<option value="3000" title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
 						</select>
 						<select id=options>
 							<option >Дополнительные услуги</option>
-							<option >Покрытие арт-гелем</option>
-							<option >Экспресс-изготовление</option>
-							<option >Доставка готовых работ </option>
+							<option value="1000">Покрытие арт-гелем</option>
+							<option value="2000">Экспресс-изготовление</option>
+							<option value="700">Доставка готовых работ </option>
 						</select>
-						<input type="text" class="promocode" placeholder="Введите ваш промокод">
-						<div class=calc-price>Для расчета нужно выбрать размер картины и материал картины</div>
-						<button class="button button-order">Быстрый заказ</button>
+						<input type="text" class="promocode" id="promocode" placeholder="Введите ваш промокод">
+						<div id="calc-price" class=calc-price>
+							<div id="calc-price-none" class="calc-price-none">Для расчета нужно выбрать размер картины и материал картины</div>
+							<div id="calc-price-value" class="calc-price-value"></div> 
+						</div>
+						<button id="button-order-calc" class="button button-order">Быстрый заказ</button>
 					</form>
 				</div>
 				<div class="col-md-4 col-md-offset-2 hidden-sm hidden-xs">
@@ -271,13 +274,13 @@
 			<div class=p-heading>Примеры работ</div>
 			<h2>Для кого делаем портрет?</h2>
 			<ul class=portfolio-menu>
-				<li class="all active">Все работы</li>
-				<li class=lovers>Для влюбленных</li>
-				<li class=chef>Для шефа</li>
-				<li class=girl>Для девушки</li>
-				<li class=guy>Для парня</li>
-				<li class=grandmother>Для бабушки</li>
-				<li class=granddad>Для дедушки</li>
+				<li class="allBtn active">Все работы</li>
+				<li class="loversBtn">Для влюбленных</li>
+				<li class="chefBtn">Для шефа</li>
+				<li class="girlBtn">Для девушки</li>
+				<li class="guyBtn">Для парня</li>
+				<li class="grandmotherBtn">Для бабушки</li>
+				<li class="granddadBtn">Для дедушки</li>
 			</ul>
 		</div>
 		<div class=portfolio-wrapper>
@@ -498,7 +501,7 @@
 				<button class="main-slider-btn main-next-btn">
 					<img src="img/right-arr.png">
 				</button>
-				<div class=feedback-slider-item>
+				<div class="feedback-slider-item animated">
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-1.png alt>
@@ -511,7 +514,7 @@
 						<p class=feedback-signature><span>Олег Петров,</span> д. Месягутово</p>
 					</div>
 				</div>
-				<div class=feedback-slider-item>
+				<div class="feedback-slider-item animated">
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-2.jpg alt>
@@ -524,7 +527,7 @@
 						<p class=feedback-signature><span>Ирина Антонова,</span> г. Кисловодск</p>
 					</div>
 				</div>
-				<div class=feedback-slider-item>
+				<div class="feedback-slider-item animated">
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-3.jpg alt>
@@ -547,25 +550,25 @@
 			<h2>Ответим на любой из ваших вопросов</h2>
 			<div id=accordion>
 				<p class="accordion-heading col-md-8 col-md-offset-2"><span>Сколько времени нужно для изготовления заказа?</span></p>
-				<div class="col-md-8 col-md-offset-2 accordion-block">
+				<div class="col-md-8 col-md-offset-2 accordion-block animated">
 					<p>
 						Время выполнения заказа зависит от трех факторов: сложности картины, стиля написания и размера. Среднее время выполнения заказа составляет 7 дней без учета времени на доставку. В ряде случаев по желанию заказчика можно уменьшить срок до 5 дней.<br><br>Примечание: Если Вы решите что-то изменить в картине, внести коррективы - это может занять дополнительное время, которое не учитывается при оговоренном сроке выполнения.
 					</p>
 				</div>
 				<p class="accordion-heading col-md-8 col-md-offset-2"><span>Смогу ли я увидеть картину до ее получения?</span></p>
-				<div class="col-md-8 col-md-offset-2 accordion-block">
+				<div class="col-md-8 col-md-offset-2 accordion-block animated">
 					<p>
 						Да. По готовности, мы отправляем по электронной почте цифровое фото Вашей картины, для того, чтобы Вы смогли, при необходимости внести свои корректировки и пожелания, если таковые будут. Вы также сможете увидеть картину "вживую" в нашем салоне. Сообщите об этом Вашему менеджеру.
 					</p>
 				</div>
 				<p class="accordion-heading col-md-8 col-md-offset-2"><span>Какого формата должны быть фотографии</span></p>
-				<div class="col-md-8 col-md-offset-2 accordion-block">
+				<div class="col-md-8 col-md-offset-2 accordion-block animated">
 					<p>
 						Мы работаем со всеми известными форматами изображений! Через сайт вы можете загрузить JPEG, TIFF, PNG размером до 50 мегабайт. Вы должны обладать авторскими правами или иметь разрешение на использование изображения. Если у Вас другой формат изображения (RAW, PDF), то вы можете воспользоваться FTP загрузчиком. Если вы хотите сделать фото из бумажной фотографии (не цифровой), пришлите его нам, мы отсканируем, обработаем и вернем фото вместе с вашим заказом!
 					</p>
 				</div>
 				<p class="accordion-heading col-md-8 col-md-offset-2"><span>Могу ли я дать особые указания художнику</span></p>
-				<div class="col-md-8 col-md-offset-2 accordion-block">
+				<div class="col-md-8 col-md-offset-2 accordion-block animated">
 					<p>
 						Когда вы размещаете свой заказ на сайте, вы можете добавить свои комментарии в специальном текстовом поле. Вы также можете: объединить объекты с разных фото в одно или удалить объекты с фото, можете поменять задний фон, поменять одежду, наряды, сделать цветную картину с черно-белого фото, а также заказать картину с поврежденного или старого фото.
 					</p>
@@ -707,10 +710,8 @@
 	</div>
 
 	<link rel=stylesheet href=css/bootstrap.css>
+	<link rel=stylesheet href=css/animate2.css>
 	<link rel=stylesheet href=css/main.css>
-	<script src="https://cdn.polyfill.io/v1/polyfill.js?Element.prototype.closest"></script>
-	<script src='js/main.js'>
-		
-	</script>
+	<script src="js\main.js"></script>
 </body>
 </html>

@@ -1,124 +1,299 @@
-'use strict'
-window.addEventListener('DOMContentLoaded',function(){
-//Modal-gift
-let gift = document.querySelector('.fixed-gift'),
-overlay=document.querySelector('.popup-gift'),
-close=document.querySelectorAll('.popup-close');
+'use strict';
+window.onload = function() {
+
+	// слайдер верхний
+
+	let slideIndex = 0,
+	slides = document.getElementsByClassName('main-slider-item');
 
 
-gift.addEventListener('click', function(){
-	overlay.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-
-});
-for(let i = 0;i< close.length; i++){
-	close[1].addEventListener('click',function (){
-		overlay.style.display='none';
-		document.body.style.overflow ='';
-		gift.style.display='block';	
-	});}
-
-	window.addEventListener('click',function(e){
-		if(e.target == overlay){
-			overlay.style.display='none';
-			document.body.style.overflow ='';
-			gift.style.display='block';	
+	function showSlide(){
+		// чтобы после последнего слайда показывался 1-ый.
+		if (slideIndex==slides.length) {
+			slideIndex = 0;
 		}
-	});
-	//modal design
-//button 0,2,9,10,11,12, close 2 
-let btn = document.querySelectorAll('.button'),
-overlaydesign=document.querySelector('.popup-design'),	
-overlaycons=document.querySelector('.popup-consultation');
+		
 
-for(let i =0; i<btn.length;i++){
-	if(i === 0||i === 1||i=== 2|| i===9|| i===10 || i===11 || i===12){
-		btn[i].addEventListener('click',function(){
-			overlaydesign.style.display='block';
-			document.body.style.overflow ='hidden';
-			btn[9].style.display ='none';
-			btn[10].style.display ='none';
-			btn[11].style.display ='none';
-		});	
-		close[2].addEventListener('click', function (){
-			overlaydesign.style.display='none';
-			document.body.style.overflow ='';
-			if(i===9||i===10||i===11){
-				btn[i].style.display ='block';}
-			});
-		window.addEventListener('click',function(e){
-			if(e.target == overlaydesign){
-				overlaydesign.style.display='none';
-				document.body.style.overflow ='';
-				if(i===9||i===10||i===11){
-					btn[i].style.display ='block';}
-				}
-			});
+		let prevSlideIndex = slideIndex - 1;
+		if (prevSlideIndex==-1) {
+			prevSlideIndex = slides.length-1;
+		}
+
+		slides[slideIndex].classList.remove('fadeOutDown');
+		slides[slideIndex].classList.add('fadeIn');
+		
+		slides[prevSlideIndex].classList.add('fadeOutDown');
+		slides[prevSlideIndex].classList.remove('fadeIn');
+
+		
+		setTimeout(function(){
+			slides[slideIndex].style.display = "flex";
+			slides[prevSlideIndex].style.display = "none";
+
+		}, 500);
+
 	}
-	if(i === 4 || i ===6|| i=== 7){
-		btn[i].addEventListener('click',function(){
-			overlaycons.style.display='block';
-			document.body.style.overflow ='hidden';
-			btn.style.display ='none';
-		});
-		close[0].addEventListener('click', function (){
-			overlaycons.style.display='none';
-			document.body.style.overflow ='';
-			btn.style.display ='block';
-		});
-		window.addEventListener('click',function(e){
-			if(e.target == overlaycons){
-				overlaycons.style.display='none';
-				document.body.style.overflow ='';
+ 	function plusSlides(){
+		slideIndex++;
+	 	showSlide();
+	}
+	
+	setInterval(function() {
+	  plusSlides();
+	},2500);
+	showSlide();
+
+	// слайдер нижний
+
+	let slideIndexFeedback = 0,
+	lastDirection = 1,
+		// timerIdFeed,
+		slidesFeedback  = document.getElementsByClassName('feedback-slider-item'),
+		prevFeedback  = document.querySelector('.main-prev-btn'),
+		nextFeedback  = document.querySelector('.main-next-btn'),
+		feedback = document.querySelector('.feedback-slider');
+
+		function showSlideFeedback (delta){
+			let prevSlideIndexFeedback = slideIndexFeedback;
+			slideIndexFeedback = slideIndexFeedback + delta;
+
+			if (slideIndexFeedback>slidesFeedback.length-1) {
+				slideIndexFeedback = 0;
+			}
+			if (slideIndexFeedback<0) {
+				slideIndexFeedback = slidesFeedback.length-1;
 			}
 
+			slidesFeedback[slideIndexFeedback].classList.remove('fadeOutRight','fadeOutLeft');
+			
+			slidesFeedback[slideIndexFeedback].classList.add('fadeIn');			
+			
+			
+			if (delta>0) {
+				slidesFeedback[prevSlideIndexFeedback].classList.add('fadeOutRight');
+			}
+			if (delta<0) {
+				slidesFeedback[prevSlideIndexFeedback].classList.add('fadeOutLeft');
+			}
+			
+			slidesFeedback[prevSlideIndexFeedback].classList.remove('fadeIn');
+			
+			if (delta===0) {
+				slidesFeedback[prevSlideIndexFeedback].style.display = 'none';
+				slidesFeedback[slideIndexFeedback].style.display = 'flex';
+			}
+			else {
+				setTimeout(function(){
+					slidesFeedback[prevSlideIndexFeedback].style.display = 'none';
+					slidesFeedback[slideIndexFeedback].style.display = 'flex';
+				},300);
+			}
+			
+		}
+
+		showSlideFeedback(0);
+
+		prevFeedback.addEventListener('click', function(){
+			lastDirection = -1;
+			showSlideFeedback(-1);
+
+		});
+		
+		nextFeedback.addEventListener('click', function(){
+			lastDirection = 1;
+			showSlideFeedback(1);
 		});
 
-	}
-}});
-/*//Form for AJAX
-let message = new Object();
-message.loading = 'Загрузка...';
-message.success = 'Спасибо ! Скоро мы с Вами свяжемся!';
-message.failure = 'что-то пошло не так...';
 
-let form = document.querySelectorAll('form')[1],
-	input = form.getElementsByTagName('input'),
-	statusMessage = document.createElement('div');
-	statusMessage.classList.add('status');
+		var timerIdFeed = setInterval(function() {
+			showSlideFeedback (lastDirection);
+		},3000);
 
-	form.addEventListener('submit',function(event){
-		event.preventDefault();
-		form.appendChild(statusMessage);
 
-//AJAX
-let request = new XMLHttpRequest();
-request.open('POST','server.php');
 
-request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		feedback.addEventListener('mouseenter', function(){
+			clearInterval(timerIdFeed);
+			
+		});
 
-let formData = new FormData(form);
+		feedback.addEventListener('mouseleave', function(){
+			timerIdFeed = setInterval(function() {
+				showSlideFeedback (lastDirection);
+			},3000);
+		});
 
-request.send(formData);
 
-request.onreadystatechange = function() {
-	if (request.readyState < 4){
-		statusMessage.innerHTML = message.loading;
-	} else if (request.readyState === 4){
-		if(request.status ===200 && request.status <300){
-			statusMessage.innerHTML = message.success;
-					//Добавляем контент на страницу	
+		// аккордеон
+
+		let 	accordionHead = document.getElementsByClassName('accordion-heading'),
+		accordionBlock = document.getElementsByClassName('accordion-block');
+
+
+		for (let i=0; i<accordionHead.length; i++) {
+			accordionHead[i].addEventListener('click', function(){
+				for(let c=0; c<accordionHead.length; c++){
+					accordionHead[c].style.color = '#333';
+					accordionHead[c].querySelector("span").style.borderBottom = '2px dotted #333';
+				}
+
+				for(let a=0; a<accordionBlock.length; a++){
+					if (a!=i) {
+						accordionBlock[a].style.display = 'none';
+					}
+				}
+
+				if (accordionBlock[i].style.display == 'flex') {
+					accordionBlock[i].style.display = 'none';
 				} else {
-					statusMessage.innerHTML = message.failure;}
+					accordionBlock[i].style.display = 'flex';
+					accordionHead[i].style.color = '#f442e5';
+					accordionHead[i].querySelector("span").style.borderColor  = 'transparent';
+					accordionBlock[i].classList.add('slideInDown');
 				}
-			};
-			for(let i = 0; i < input.length; i++){
-				input[i].value = '';
-				//Очищаем поля ввода
-			}
-		});
+			});
+		}
+		// фильтрация блоков
 
-		});
-*/
+let all = document.getElementsByClassName('all'),
+girl = document.getElementsByClassName('girl'),
+chef = document.getElementsByClassName('chef'),
+guy = document.getElementsByClassName('guy'),
+lovers = document.getElementsByClassName('lovers');
+
+let portfolioNo = document.querySelector('.portfolio-no'),
+portfolioMenu = document.getElementsByClassName('portfolio-menu')[0],
+portfolioMenuLi = portfolioMenu.querySelectorAll('li'),
+portfolioBlock = document.getElementsByClassName('portfolio-block');
+
+for(let i = 0; i<all.length; i++){
+	all[i].style.display = 'block';
+}
+
+function hideAllBlocks() {
+	for (let i=0; i< portfolioBlock.length; i++) {
+		portfolioBlock[i].style.display = "none";
+	}
+}
+
+portfolioMenu.addEventListener('click', function(e) {
+	if (e.target && e.target.tagName == 'LI') {
+		for(let i = 0; i<portfolioMenuLi.length; i++){
+			portfolioMenuLi[i].classList.remove('active');
+			e.target.classList.add('active');
+		}
+
+		if (e.target.className.indexOf('allBtn')!==-1) {
+			for(let i = 0; i<all.length; i++){
+				all[i].style.display = 'block';
+			}
+		}
+		if (e.target.className.indexOf('loversBtn')!==-1) {
+			hideAllBlocks();
+			for(let i = 0; i<lovers.length; i++){
+				lovers[i].style.display = 'block';
+			}
+		}
+
+		if (e.target.className.indexOf('chefBtn')!==-1) {
+			hideAllBlocks();
+			for(let i=0; i<chef.length; i++){
+				chef[i].style.display = 'block';
+			}
+		}
+
+		if (e.target.className.indexOf('guyBtn')!==-1) {
+			hideAllBlocks();
+			for(let i=0; i<guy.length; i++){
+				guy[i].style.display = 'block';
+			}
+		}
+
+		if (e.target.className.indexOf('girlBtn')!==-1) {
+			hideAllBlocks();
+			for(let i=0; i<girl.length; i++){
+				girl[i].style.display = 'block';
+			}
+		}
+
+		if (e.target.className.indexOf('grandmotherBtn')!==-1 || e.target.className.indexOf('granddadBtn')!==-1) {
+			hideAllBlocks();
+			portfolioNo.style.display = 'block';
+		}
+	}
+});
+
+	// картинки при наведении
+
+	let images = document.createElement('img'),
+	picBlocks = document.getElementsByClassName('sizes-block');
+	
+	images.style.position = 'absolute';
+	images.style.top = '0';
+	images.style.left = '0';
+	images.style.right = '0';
+	images.style.bottom = '0';
+
+	picBlocks[0].addEventListener('mouseenter', function(){
+		picBlocks[0].appendChild(images);
+		images.src = './img/sizes-1-1.png';
+	});
+
+	picBlocks[0].addEventListener('mouseleave', function(){
+		picBlocks[0].removeChild(images);
+	});
+
+	picBlocks[1].addEventListener('mouseenter', function(){
+		picBlocks[1].appendChild(images);
+		images.src = './img/sizes-2-1.png';
+	});
+
+	picBlocks[1].addEventListener('mouseleave', function(){
+		picBlocks[1].removeChild(images);
+	});
+
+	picBlocks[2].addEventListener('mouseenter', function(){
+		picBlocks[2].appendChild(images);
+		images.src = './img/sizes-3-1.png';
+	});
+
+	picBlocks[2].addEventListener('mouseleave', function(){
+		picBlocks[2].removeChild(images);
+	});
+
+	picBlocks[3].addEventListener('mouseenter', function(){
+		picBlocks[3].appendChild(images);
+		images.src = './img/sizes-4-1.png';
+	});
+
+	picBlocks[3].addEventListener('mouseleave', function(){
+		picBlocks[3].removeChild(images);
+	});
+
+
+
+
+	// Подгрузка блоков
+
+	let styleBlockButton = document.getElementById('styleButton'),
+		styleMore = document.getElementsByClassName('styles-2');
+
+		styleBlockButton.addEventListener('click', function(){
+			for(let i = 0; i<styleMore.length; i++){
+				styleMore[i].style.display='block';
+		}
+		styleBlockButton.style.display = 'none';
+	});
+
+
+	
+
+
+
+
+
+
+
+
+
+};
 

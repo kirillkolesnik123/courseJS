@@ -59,12 +59,17 @@ h3,
 h4 {
   font-family: 'Circe Extra Bold', sans-serif;
 }
+
 .p15 {
   font-size: 1.5;
 }
 .p-heading {
   font-size: 2.2rem;
 }
+
+ .styles-2{
+    display: none;
+  }
 .button {
   border-radius: 50px;
   display: block;
@@ -356,6 +361,12 @@ h4 {
   padding: 1.5rem 4rem;
   margin-bottom: 7rem;
 }
+.main-slider {
+  overflow: hidden;
+}
+.main-slider-item {
+  display: none;
+}
 .main-slider-btn {
   position: absolute;
   top: 50%;
@@ -611,6 +622,27 @@ h4 {
 .portfolio {
   padding-top: 8rem;
 }
+
+.all{
+  display: block;
+}
+
+.lovers{
+  display: none;
+}
+
+.girl{
+  display: none;
+}
+
+.guy{
+  display: none;
+}
+
+.chef{
+  display: none;
+}
+
 .portfolio h2,
 .portfolio .p-heading {
   text-align: center;
@@ -636,6 +668,7 @@ h4 {
   color: #c51abb;
   border-radius: 50px;
 }
+
 .portfolio-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -837,8 +870,12 @@ h4 {
   background-color: #f7e7e6;
   padding: 9rem 0;
 }
+.feedback-slider {
+  overflow: hidden;
+}
 .feedback-slider-item {
   padding-bottom: 5rem;
+  display: none;
 }
 .feedback-block {
   position: relative;
@@ -900,6 +937,10 @@ h4 {
 }
 .often-questions .accordion-heading span {
   border-bottom: 2px dotted #333;
+}
+
+.accordion-block{
+  display: none;
 }
 .often-questions .accordion-block {
   margin-top: 6rem;
@@ -1624,6 +1665,8 @@ h4 {
   .styles .p-heading {
     margin-top: 4rem;
   }
+
+
   .styles h2 {
     margin-bottom: 4rem;
   }
