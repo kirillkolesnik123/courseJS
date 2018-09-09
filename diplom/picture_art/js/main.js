@@ -1,9 +1,9 @@
+'use strict'
 window.addEventListener('DOMContentLoaded',function(){
-//Modal
+//Modal-gift
 let gift = document.querySelector('.fixed-gift'),
 overlay=document.querySelector('.popup-gift'),
-close=document.querySelectorAll('.popup-close')[1],
-content=document.querySelector('.popup-content');
+close=document.querySelectorAll('.popup-close');
 
 
 gift.addEventListener('click', function(){
@@ -12,108 +12,89 @@ gift.addEventListener('click', function(){
 	gift.style.display='none';
 
 });
-close.addEventListener('click', function (){
-	overlay.style.display='none';
-	document.body.style.overflow ='';
-});
-
-window.addEventListener('click',function(e){
-	if(e.target == overlay){
+for(let i = 0;i< close.length; i++){
+	close[1].addEventListener('click',function (){
 		overlay.style.display='none';
 		document.body.style.overflow ='';
+		gift.style.display='block';	
+	});}
+
+	window.addEventListener('click',function(e){
+		if(e.target == overlay){
+			overlay.style.display='none';
+			document.body.style.overflow ='';
+			gift.style.display='block';	
+		}
+	});
+	//modal design
+//button 0,2,9,10,11,12, close 2 
+let btn = document.querySelectorAll('.button'),
+overlaydesign=document.querySelector('.popup-design'),	
+overlaycons=document.querySelector('.popup-consultation');
+
+for(let i =0; i<btn.length;i++){
+	if(i === 0||i === 1||i=== 2|| i===9|| i===10 || i===11 || i===12){
+		btn[i].addEventListener('click',function(){
+			overlaydesign.style.display='block';
+			document.body.style.overflow ='hidden';
+			btn[9].style.display ='none';
+			btn[10].style.display ='none';
+			btn[11].style.display ='none';
+		});	
+		close[2].addEventListener('click', function (){
+			overlaydesign.style.display='none';
+			document.body.style.overflow ='';
+			if(i===9||i===10||i===11){
+				btn[i].style.display ='block';}
+			});
+		window.addEventListener('click',function(e){
+			if(e.target == overlaydesign){
+				overlaydesign.style.display='none';
+				document.body.style.overflow ='';
+				if(i===9||i===10||i===11){
+					btn[i].style.display ='block';}
+				}
+			});
 	}
-});
+	if(i === 4 || i ===6|| i=== 7){
+		btn[i].addEventListener('click',function(){
+			overlaycons.style.display='block';
+			document.body.style.overflow ='hidden';
+			btn.style.display ='none';
+		});
+		close[0].addEventListener('click', function (){
+			overlaycons.style.display='none';
+			document.body.style.overflow ='';
+			btn.style.display ='block';
+		});
+		window.addEventListener('click',function(e){
+			if(e.target == overlaycons){
+				overlaycons.style.display='none';
+				document.body.style.overflow ='';
+			}
 
-let btn0 = document.querySelectorAll('.button')[0],
-btn2 = document.querySelectorAll('.button')[2],
-btn9 = document.querySelectorAll('.button')[9],
-btn12 = document.querySelectorAll('.button')[12],
-overlaydesign=document.querySelector('.popup-design'),
-closedesign=document.querySelectorAll('.popup-close')[2];		
+		});
 
-btn0.addEventListener('click',function(){
-	overlaydesign.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-
-});
-btn2.addEventListener('click',function(){
-	overlaydesign.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-
-});
-btn9.addEventListener('click',function(){
-	overlaydesign.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-});
-btn12.addEventListener('click',function(){
-	overlaydesign.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-});
-closedesign.addEventListener('click', function (){
-	overlaydesign.style.display='none';
-	document.body.style.overflow ='';
-	gift.style.display='none';
-});
-
-window.addEventListener('click',function(e){
-	if(e.target == overlaydesign){
-		overlaydesign.style.display='none';
-		document.body.style.overflow ='';
 	}
-});
-
-let btn4 = document.querySelectorAll('.button')[4],
-btn6 = document.querySelectorAll('.button')[6],
-overlaycons=document.querySelector('.popup-consultation'),
-closecons=document.querySelectorAll('.popup-consultation')[0];		
-
-
-btn4.addEventListener('click',function(){
-	overlaycons.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-});
-
-btn6.addEventListener('click',function(){
-	overlaycons.style.display='block';
-	document.body.style.overflow ='hidden';
-	gift.style.display='none';
-});
-
-closecons.addEventListener('click', function (){
-	overlaycons.style.display='none';
-	document.body.style.overflow ='';
-	gift.style.display='none';
-});
-
-window.addEventListener('click',function(e){
-	if(e.target == overlaycons){
-		overlaycons.style.display='none';
-		document.body.style.overflow ='';
-	}
-});
-//Form for AJAX
+}});
+/*//Form for AJAX
 let message = new Object();
 message.loading = 'Загрузка...';
 message.success = 'Спасибо ! Скоро мы с Вами свяжемся!';
 message.failure = 'что-то пошло не так...';
 
-let form = document.querySelectorAll('main-form')[0],
-input = form.getElementsByTagName('input'),
-statusMessage = document.createElement('div');
-statusMessage.classList.add('status');
+let form = document.querySelectorAll('form')[1],
+	input = form.getElementsByTagName('input'),
+	statusMessage = document.createElement('div');
+	statusMessage.classList.add('status');
 
-form.addEventListener('submit',function(event){
-	event.preventDefault();
-	form.appendChild(statusMessage);
+	form.addEventListener('submit',function(event){
+		event.preventDefault();
+		form.appendChild(statusMessage);
 
 //AJAX
 let request = new XMLHttpRequest();
-request.open('POST','server.php')
+request.open('POST','server.php');
 
 request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
@@ -131,26 +112,13 @@ request.onreadystatechange = function() {
 				} else {
 					statusMessage.innerHTML = message.failure;}
 				}
-			}
+			};
 			for(let i = 0; i < input.length; i++){
 				input[i].value = '';
 				//Очищаем поля ввода
 			}
 		});
 
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
+		});
+*/
 
