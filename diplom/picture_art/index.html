@@ -10,10 +10,10 @@
 	<header class=header>
 		<div class=container>
 			<div class="col-md-2 col-sm-3 col-xs-6">
-				<button class=burger>
+				<button id="burger" class=burger>
 					<img src=img/burger.svg alt><span>Каталог товаров</span>
 				</button>
-				<ul class=burger-menu>
+				<ul id="burger-menu" class="burger-menu animated">
 					<li>
 						<a href>Картина из вашего фото</a>
 					</li>
@@ -29,7 +29,7 @@
 				</ul>
 			</div>
 			<div class="col-md-8 hidden-sm hidden-xs">
-				<ul class=header-menu>
+				<ul id="header-menu" class=header-menu>
 					<li>
 						<a href>Картина из вашего фото</a>
 						<ul class="burger-menu header-menu-sub">
@@ -250,9 +250,9 @@
 						</select>
 						<select id=options>
 							<option >Дополнительные услуги</option>
-							<option value="1000">Покрытие арт-гелем</option>
-							<option value="2000">Экспресс-изготовление</option>
-							<option value="700">Доставка готовых работ </option>
+							<option value="1000" >Покрытие арт-гелем</option>
+							<option value="2000" >Экспресс-изготовление</option>
+							<option value="700" >Доставка готовых работ </option>
 						</select>
 						<input type="text" class="promocode" id="promocode" placeholder="Введите ваш промокод">
 						<div id="calc-price" class=calc-price>
