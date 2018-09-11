@@ -381,7 +381,6 @@ portfolioMenu.addEventListener('click', function(e) {
 	let body = document.getElementsByTagName('body')[0],
 			popupConsultationBlock = document.getElementsByClassName('popup-consultation')[0],
 			popupDesignBlock = document.getElementsByClassName('popup-design')[0],
-			popupClose = document.getElementsByClassName('popup-close'),
 			popUpAll = document.querySelectorAll('.popUpAll'),
 			gift = document.getElementById('gift'),
 			popupGift = document.querySelector('.popup-gift'),
@@ -394,7 +393,7 @@ portfolioMenu.addEventListener('click', function(e) {
 		}
 		if (e.target && e.target.id == 'popupClose') {
 			for(let i = 0; i<popUpAll.length; i++){
-				popUpAll[i].style.display = 'none'
+				popUpAll[i].style.display = 'none';
 			}
 			indexOpenModal = true;
 		}
@@ -421,16 +420,15 @@ portfolioMenu.addEventListener('click', function(e) {
 	let endScrollHeight = document.body.scrollHeight - document.documentElement.clientHeight;
 
 	window.addEventListener('scroll', function(){
-		if ((window.pageYOffset >= endScrollHeight) && indexOpenModal == false) {
+		if ((window.pageYOffset >= endScrollHeight) && indexOpenModal === false) {
 			popupGift.style.display = 'block';
 			gift.style.display = 'none';
 		}
 	});
 
 	let minutePopup = setTimeout(function(){
-		if (indexOpenModal == false) {
+		if (indexOpenModal === false) {
 			popupConsultationBlock.style.display = 'block';
-			console.log('работает')
 		} else{
 			clearInterval(minutePopup);
 		}
