@@ -6,7 +6,7 @@
 	<title>Картины.art - портрет на холсте</title>
 </head>
 <body>
-	<img class="fixed-gift wow pulse infinite" src=img/gift.png alt>
+	<img id = 'gift' class="fixed-gift wow animated pulse infinite" src=img/gift.png alt>
 	<header class=header>
 		<div class=container>
 			<div class="col-md-2 col-sm-3 col-xs-6">
@@ -66,7 +66,7 @@
 			</div>
 			<div class="col-md-2 col-md-offset-0 col-sm-3 col-sm-offset-6 col-xs-6">
 				<div class=button-wrap>
-					<button class="button button-order button-design">Заказать<img src=img/button-right-arrow.svg alt></button>
+					<button id = 'buttonDesign' id = 'buttonDesign' class="button button-order button-design button-design-popup">Заказать<img src=img/button-right-arrow.svg alt></button>
 				</div>
 			</div>
 		</div>
@@ -120,7 +120,7 @@
 						</div>
 					</div>
 					<p class=p-button>Отправьте фото сейчас и получите дизайн через 1 час</p>
-					<button class="button button-order button-design"><img class=button-order-img src=img/button-arrow.png alt>Заказать портрет</button>
+					<button id = 'buttonDesign' class="button button-order button-design button-design-popup"><img class=button-order-img src=img/button-arrow.png alt>Заказать портрет</button>
 				</div>
 			</div>
 		</div>
@@ -133,7 +133,7 @@
 			<div class=col-md-5>
 				<p>Просто отправьте фото и</p>
 				<h2 class="wow fadeInUp">Мы пришлем вам дизайн бесплатно в течение 1 часа!</h2>
-				<button class="button button-order button-design">Заказать дизайн портрета</button>
+				<button id = 'buttonDesign' class="button button-order button-design button-design-popup">Заказать дизайн портрета</button>
 			</div>
 		</div>
 		<img class=palette src=img/palette.png alt>
@@ -215,7 +215,7 @@
 						<div class=card-block-text>
 							<h3>Потрясающий портрет флип-флап в стиле поп арт</h3>
 							<p class=p-heading>Вы подарите яркие эмоции, запомнится надолго!</p>
-							<button class="button button-order button-consultation  wow zoomIn">Подробнее об услуге</button>
+							<button id="popUpConsultBtn" class="button button-order button-consultation  wow zoomIn popUpConsultBtn">Подробнее об услуге</button>
 						</div>
 					</div>
 				</div>
@@ -453,7 +453,7 @@
 						<div class=card-block-text>
 							<h3>Оформление в багетные рамы</h3>
 							<p class=p-heading>Мы можем предложить вам оформление в любую раму из огромного ассортимента по желанию.</p>
-							<button class="button button-order button-consultation wow zoomIn">Подробнее об услуге</button>
+							<button id="popUpConsultBtn" class="button button-order button-consultation wow zoomIn popUpConsultBtn">Подробнее об услуге</button>
 						</div>
 					</div>
 				</div>
@@ -468,7 +468,7 @@
 						<div class=card-block-text>
 							<h3>Заказать портрет маслом у портретиста</h3>
 							<p class=p-heading>Эксклюзивно, качественно, детальная ручная прорисовка.</p>
-							<button class="button button-order button-consultation zoomIn">Подробнее об услуге</button>
+							<button id = 'popUpConsultBtn' class="button button-order button-consultation zoomIn ">Подробнее об услуге</button>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
@@ -505,7 +505,7 @@
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-1.png alt>
-							<button class="button button-order button-design">Хочу так же</button>
+							<button id = 'buttonDesign' class="button button-order button-design button-design-popup">Хочу так же</button>
 						</div>
 					</div>
 					<div class="col-sm-5 col-sm-offset-1">
@@ -518,7 +518,7 @@
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-2.jpg alt>
-							<button class="button button-order button-design">Хочу так же</button>
+							<button id = 'buttonDesign' class="button button-order button-design button-design-popup">Хочу так же</button>
 						</div>
 					</div>
 					<div class="col-sm-5 col-sm-offset-1">
@@ -531,7 +531,7 @@
 					<div class=col-sm-5>
 						<div class=feedback-block>
 							<img src=img/feedback-3.jpg alt>
-							<button class="button button-order button-design">Хочу так же</button>
+							<button id = 'buttonDesign' class="button button-order button-design button-design-popup">Хочу так же</button>
 						</div>
 					</div>
 					<div class="col-sm-5 col-sm-offset-1">
@@ -586,7 +586,7 @@
 				<div class=col-md-5>
 					<p>Просто отправьте фото и</p>
 					<h2 class="wow fadeInUp">Мы пришлем вам дизайн бесплатно в течение 1 часа!</h2>
-					<button class="button button-order button-design">Заказать дизайн портрета</button>
+					<button id = 'buttonDesign' class="button button-order button-design  button-design-popup">Заказать дизайн портрета</button>
 				</div>
 			</div>
 		</div>
@@ -659,10 +659,10 @@
 			</div>
 		</div>
 	</footer>
-	<div class=popup-consultation>
+	<div id="popupConsultationBlock" class="popup-consultation popUpAll">
 		<div class=popup-dialog>
 			<div class=popup-content>
-				<button class=popup-close>&times;</button>
+				<button id = 'popupClose' class=popup-close>&times;</button>
 				<h4>Остались вопросы? Закажите обратный звонок</h4>
 				<div class=main-form>
 					<form class=form action=mailer/smart.php method=POST>
@@ -674,20 +674,20 @@
 			</div>
 		</div>
 	</div>
-	<div class="popup-gift">
+	<div id='popupGift' class="popup-gift popUpAll">
 		<div class=popup-dialog>
 			<div class=popup-content>
-				<button class=popup-close>&times;</button>
+				<button id = 'popupClose' class=popup-close>&times;</button>
 				<h2>У нас для вас есть подарок!</h2>
 				<img src="img/gift.png" alt="">
 				<p>Введите промо-код IWANTPOPART и получите скидку 30% на портрет любого размера в стиле pop-art!</p>
 			</div>
 		</div>
 	</div>
-	<div class=popup-design>
+	<div id = 'popupDesignBlock' class="popup-design popUpAll">
 		<div class=popup-dialog>
 			<div class=popup-content>
-				<button class=popup-close>&times;</button>
+				<button id = 'popupClose' class=popup-close>&times;</button>
 				<form action= method=POST enctype=multipart/form-data>
 					<h4>Заказать дизайн портрета</h4>
 					<div class=file_uploa>

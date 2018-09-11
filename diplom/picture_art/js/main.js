@@ -1,6 +1,7 @@
 'use strict';
 window.onload = function() {
 
+
 	// слайдер верхний
 
 	let slideIndex = 0,
@@ -326,7 +327,6 @@ portfolioMenu.addEventListener('click', function(e) {
 			promocode = document.getElementById('promocode'),
 			calcPriceValue = document.getElementById('calc-price-value'),
 			calcPriceText = document.getElementById('calc-price-none'),
-			buttonOrderCalc = document.getElementById('button-order-calc'),
 			price = 0,
 			work = 5000;
 
@@ -376,13 +376,64 @@ portfolioMenu.addEventListener('click', function(e) {
 	});
 	
 
+	
+	// Модальные окна popup-consultation&design&gift
+	let body = document.getElementsByTagName('body')[0],
+			popupConsultationBlock = document.getElementsByClassName('popup-consultation')[0],
+			popupDesignBlock = document.getElementsByClassName('popup-design')[0],
+			popupClose = document.getElementsByClassName('popup-close'),
+			popUpAll = document.querySelectorAll('.popUpAll'),
+			gift = document.getElementById('gift'),
+			popupGift = document.querySelector('.popup-gift'),
+			indexOpenModal = false;
 
+	body.addEventListener('click', function(e){
+		if (e.target && e.target.id == 'popUpConsultBtn') {
+			popupConsultationBlock.style.display = 'block';
+			indexOpenModal = true;
+		}
+		if (e.target && e.target.id == 'popupClose') {
+			for(let i = 0; i<popUpAll.length; i++){
+				popUpAll[i].style.display = 'none'
+			}
+			indexOpenModal = true;
+		}
+		if (e.target && e.target.id == 'buttonDesign') {
+			popupDesignBlock.style.display = 'block';
+			indexOpenModal = true;
+		}
+		if (e.target && e.target.id == 'gift') {
+			popupGift.style.display = 'block';
+			gift.style.display = 'none';
+			indexOpenModal = true;
+		}
+		if ((e.target && e.target.id == 'popupGift') || (e.target && e.target.id == 'popupDesignBlock') || (e.target && e.target.id == "popupConsultationBlock")) {
+			popupGift.style.display = 'none';
+			popupDesignBlock.style.display = 'none';
+			popupConsultationBlock.style.display = 'none';
+			indexOpenModal = true;
+		}
 
+	});
 
+	// долистал до конца и 60 секунд
 
+	let endScrollHeight = document.body.scrollHeight - document.documentElement.clientHeight;
 
+	window.addEventListener('scroll', function(){
+		if ((window.pageYOffset >= endScrollHeight) && indexOpenModal == false) {
+			popupGift.style.display = 'block';
+			gift.style.display = 'none';
+		}
+	});
 
-
-
+	let minutePopup = setTimeout(function(){
+		if (indexOpenModal == false) {
+			popupConsultationBlock.style.display = 'block';
+			console.log('работает')
+		} else{
+			clearInterval(minutePopup);
+		}
+	}, 60000);
 };
 
