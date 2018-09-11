@@ -340,7 +340,13 @@ portfolioMenu.addEventListener('click', function(e) {
 			calcPriceText.style.display = 'none';
 			calcPriceValue.style.display = 'block';
 			calcPriceValue.innerHTML = price;
-		} else if (options.selectedIndex !== '' && promocode.value === ''){
+		} else if (size.selectedIndex !== '' && material.value !== ''){
+			price = parseInt(size.value) + parseInt(material.value);
+			calcPriceText.style.display = 'none';
+			calcPriceValue.style.display = 'block';
+			calcPriceValue.innerHTML = price;
+		} 
+		else if (options.selectedIndex !== '' && promocode.value === ''){
 			price = parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work;
 			calcPriceText.style.display = 'none';
 			calcPriceValue.style.display = 'block';
