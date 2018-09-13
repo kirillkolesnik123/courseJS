@@ -1,62 +1,58 @@
-function calculator(){
-let size = document.getElementById('size'),
-			material = document.getElementById('material'),
-			options = document.getElementById('options'),
-			promocode = document.getElementById('promocode'),
-			calcPriceValue = document.getElementById('calc-price-value'),
-			calcPriceText = document.getElementById('calc-price-none'),
-			price = 0,
-			work = 5000;
+"use strict";
 
+function calculator() {
+  // калькулятор
+  var size = document.getElementById('size'),
+      material = document.getElementById('material'),
+      options = document.getElementById('options'),
+      promocode = document.getElementById('promocode'),
+      calcPriceValue = document.getElementById('calc-price-value'),
+      calcPriceText = document.getElementById('calc-price-none'),
+      buttonOrderCalc = document.getElementById('button-order-calc'),
+      price = 0,
+      work = 5000;
 
-	function handleChange () {
-		if (size.selectedIndex === '' || material.selectedIndex === '') {
-			calcPriceText.style.display = 'block';
-			calcPriceValue.style.display = 'none';
-		} else if (options.selectedIndex === '' && promocode.value === ''){
-			price = parseInt(size.value) + parseInt(material.value) + work;
-			calcPriceText.style.display = 'none';
-			calcPriceValue.style.display = 'block';
-			calcPriceValue.innerHTML = price;
-		} else if (size.selectedIndex !== '' && material.value !== ''){
-			price = parseInt(size.value) + parseInt(material.value);
-			calcPriceText.style.display = 'none';
-			calcPriceValue.style.display = 'block';
-			calcPriceValue.innerHTML = price;
-		} 
-		else if (options.selectedIndex !== '' && promocode.value === ''){
-			price = parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work;
-			calcPriceText.style.display = 'none';
-			calcPriceValue.style.display = 'block';
-			calcPriceValue.innerHTML = price;
-		} else if (options.selectedIndex === '' && promocode.value === 'IWANTPOPART'){
-			let discount = Math.round(((parseInt(size.value) + parseInt(material.value) + work)*30)/100);
-			price = (parseInt(size.value) + parseInt(material.value) + work);
-			calcPriceText.style.display = 'none';
-			calcPriceValue.innerHTML = price - discount;
-		} else {
-			let discount = Math.round(((parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work)*30)/100);
-			price = parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work;
-			calcPriceText.style.display = 'none';
-			calcPriceValue.style.display = 'block';
-			calcPriceValue.innerHTML = price - discount;
-		}
-	}
+  function handleChange() {
+    if (size.selectedIndex == '' || material.selectedIndex == '') {
+      calcPriceText.style.display = 'block';
+      calcPriceValue.style.display = 'none';
+    } else if (options.selectedIndex == '' && promocode.value == '') {
+      price = parseInt(size.value) + parseInt(material.value) + work;
+      calcPriceText.style.display = 'none';
+      calcPriceValue.style.display = 'block';
+      calcPriceValue.innerHTML = price;
+    } else if (options.selectedIndex != '' && promocode.value == '') {
+      price = parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work;
+      calcPriceText.style.display = 'none';
+      calcPriceValue.style.display = 'block';
+      calcPriceValue.innerHTML = price;
+    } else if (options.selectedIndex == '' && promocode.value == 'IWANTPOPART') {
+      var discount = Math.round((parseInt(size.value) + parseInt(material.value) + work) * 30 / 100);
+      price = parseInt(size.value) + parseInt(material.value) + work;
+      calcPriceText.style.display = 'none';
+      calcPriceValue.innerHTML = price - discount;
+    } else {
+      var _discount = Math.round((parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work) * 30 / 100);
 
-	size.addEventListener('change', function(){
-		handleChange ();
-	});
+      price = parseInt(size.value) + parseInt(material.value) + parseInt(options.value) + work;
+      calcPriceText.style.display = 'none';
+      calcPriceValue.style.display = 'block';
+      calcPriceValue.innerHTML = price - _discount;
+    }
+  }
 
-	material.addEventListener('change', function(){
-		handleChange ();
-	});
-
-	options.addEventListener('change', function(){
-		handleChange ();
-	});
-
-	promocode.addEventListener('change', function(){
-		handleChange ();
-	});
+  size.addEventListener('change', function () {
+    handleChange();
+  });
+  material.addEventListener('change', function () {
+    handleChange();
+  });
+  options.addEventListener('change', function () {
+    handleChange();
+  });
+  promocode.addEventListener('change', function () {
+    handleChange();
+  });
 }
-module.exports =calculator;
+
+module.exports = calculator;
