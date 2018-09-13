@@ -4,7 +4,7 @@ function ajax() {
   message.loading = "Загрузка...";
   message.success = "Данные приняты. Мы свяжемся с Вами в ближайшее время";
   message.failure = "Что-то пошло не так... ";
-  statusMessage = document.createElement('div');
+  let statusMessage = document.createElement('div');
 
 
   let consultationForm = document.querySelectorAll('.consultation-form')[0],
@@ -32,9 +32,9 @@ function ajax() {
         range.collapse(true);
         range.moveEnd("character", pos);
         range.moveStart("character", pos);
-        range.select()
+        range.select();
     }
-  };
+  }
 
   function mask(event) {
     var matrix = "+7 (___) ___ ____",
@@ -45,12 +45,12 @@ function ajax() {
       val = def;
     }
     this.value = matrix.replace(/./g, function(a) {
-        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a;
     });
    if (event.type == "blur") {
-      if (this.value.length == 2) this.value = ""
-    } else setCursorPosition(this.value.length, this)
-  };
+      if (this.value.length == 2) this.value = "";
+    } else setCursorPosition(this.value.length, this);
+  }
 
   telDesign.addEventListener("input", mask, false);
   telDesign.addEventListener("focus", mask, false);

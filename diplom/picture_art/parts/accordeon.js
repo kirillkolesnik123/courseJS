@@ -1,6 +1,5 @@
 function accordeon() {
- let accordion = document.getElementById('accordion'),
-      accordionHead = document.getElementsByClassName('accordion-heading'),
+ let accordionHead = document.getElementsByClassName('accordion-heading'),
       accordionBlock = document.getElementsByClassName('accordion-block');
 
 

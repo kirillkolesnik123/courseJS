@@ -28,11 +28,13 @@ function filterblock() {
         portfolioMenuLi[_i2].classList.remove('active');
 
         e.target.classList.add('active');
+        portfolioNo.style.display = 'none';
       }
 
       if (e.target.className.indexOf('allBtn') !== -1) {
         for (var _i3 = 0; _i3 < all.length; _i3++) {
           all[_i3].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -41,6 +43,7 @@ function filterblock() {
 
         for (var _i4 = 0; _i4 < lovers.length; _i4++) {
           lovers[_i4].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -49,6 +52,7 @@ function filterblock() {
 
         for (var _i5 = 0; _i5 < chef.length; _i5++) {
           chef[_i5].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -57,6 +61,7 @@ function filterblock() {
 
         for (var _i6 = 0; _i6 < guy.length; _i6++) {
           guy[_i6].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -65,6 +70,7 @@ function filterblock() {
 
         for (var _i7 = 0; _i7 < girl.length; _i7++) {
           girl[_i7].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 

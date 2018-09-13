@@ -40,17 +40,19 @@ function modalwindows() {
       popupConsultationBlock.style.display = 'none';
       indexOpenModal = true;
     }
-  });
+  }); // долистал до конца и 60 секунд
+
   var endScrollHeight = document.body.scrollHeight - document.documentElement.clientHeight;
   window.addEventListener('scroll', function () {
-    if (window.pageYOffset >= endScrollHeight && indexOpenModal === false) {
+    if (window.pageYOffset >= endScrollHeight && indexOpenModal == false) {
       popupGift.style.display = 'block';
       gift.style.display = 'none';
     }
   });
   var minutePopup = setTimeout(function () {
-    if (indexOpenModal === false) {
+    if (indexOpenModal == false) {
       popupConsultationBlock.style.display = 'block';
+      console.log('работает');
     } else {
       clearInterval(minutePopup);
     }

@@ -3,7 +3,6 @@ function modalwindows() {
   let body = document.getElementsByTagName('body')[0],
       popupConsultationBlock = document.getElementsByClassName('popup-consultation')[0],
       popupDesignBlock = document.getElementsByClassName('popup-design')[0],
-      popupClose = document.getElementsByClassName('popup-close'),
       popUpAll = document.querySelectorAll('.popUpAll'),
       gift = document.getElementById('gift'),
       popupGift = document.querySelector('.popup-gift'),
@@ -16,7 +15,7 @@ function modalwindows() {
     }
     if (e.target && e.target.id == 'popupClose') {
       for(let i = 0; i<popUpAll.length; i++){
-        popUpAll[i].style.display = 'none'
+        popUpAll[i].style.display = 'none';
       }
       indexOpenModal = true;
     }
@@ -51,7 +50,7 @@ function modalwindows() {
   let minutePopup = setTimeout(function(){
     if (indexOpenModal == false) {
       popupConsultationBlock.style.display = 'block';
-      console.log('работает')
+      console.log('работает');
     } else{
       clearInterval(minutePopup);
     }

@@ -83,7 +83,7 @@ function ajax() {
         statusMessage.style.marginTop = '30px';
       } else if (request.readyState === 4) {
         if (request.status == 200) {
-          statusMessage.innerHTML = "<p>" + message.success + "</p>";
+          statusMessage.innerHTML = "<p>" + message.success + "</p>" + "<img src='./img/cat.png'>";
           statusMessage.style.textAlign = 'center';
           statusMessage.style.marginTop = '30px';
         } else {

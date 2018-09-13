@@ -27,17 +27,20 @@ function filterblock() {
       for(let i = 0; i<portfolioMenuLi.length; i++){
         portfolioMenuLi[i].classList.remove('active');
         e.target.classList.add('active');
+        portfolioNo.style.display = 'none';
       }
 
       if (e.target.className.indexOf('allBtn')!==-1) {
         for(let i = 0; i<all.length; i++){
           all[i].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
       if (e.target.className.indexOf('loversBtn')!==-1) {
         hideAllBlocks();
         for(let i = 0; i<lovers.length; i++){
           lovers[i].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -45,6 +48,7 @@ function filterblock() {
         hideAllBlocks();
         for(let i=0; i<chef.length; i++){
           chef[i].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -52,6 +56,7 @@ function filterblock() {
         hideAllBlocks();
         for(let i=0; i<guy.length; i++){
           guy[i].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 
@@ -59,6 +64,7 @@ function filterblock() {
         hideAllBlocks();
         for(let i=0; i<girl.length; i++){
           girl[i].style.display = 'block';
+          portfolioNo.style.display = 'none';
         }
       }
 

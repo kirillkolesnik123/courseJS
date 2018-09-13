@@ -1,14 +1,12 @@
 "use strict";
 
 function calculator() {
-  // калькулятор
   var size = document.getElementById('size'),
       material = document.getElementById('material'),
       options = document.getElementById('options'),
       promocode = document.getElementById('promocode'),
       calcPriceValue = document.getElementById('calc-price-value'),
       calcPriceText = document.getElementById('calc-price-none'),
-      buttonOrderCalc = document.getElementById('button-order-calc'),
       price = 0,
       work = 5000;
 
