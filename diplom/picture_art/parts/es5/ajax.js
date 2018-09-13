@@ -1,13 +1,14 @@
-function ajax() {
- let message = new Object();
+"use strict";
 
+require("core-js/modules/es6.regexp.replace");
+
+function ajax() {
+  var message = new Object();
   message.loading = "Загрузка...";
   message.success = "Данные приняты. Мы свяжемся с Вами в ближайшее время";
   message.failure = "Что-то пошло не так... ";
-  statusMessage = document.createElement('div');
-
-
-  let consultationForm = document.querySelectorAll('.consultation-form')[0],
+  var statusMessage = document.createElement('div');
+  var consultationForm = document.querySelectorAll('.consultation-form')[0],
       popupConsultationForm = document.querySelectorAll('.popup-consultation-form')[0],
       designForm = document.querySelectorAll('.design-form')[0],
       formNoneDesign = document.getElementsByClassName('form-none-design')[0],
@@ -16,41 +17,45 @@ function ajax() {
       telConsultationPopUp = document.getElementById('telConsultationPopUp'),
       telConsultation = document.getElementById('telConsultation'),
       inputText = document.getElementsByClassName('input-text');
-      
-      for (let i = 0; i<inputText.length; i++){
-        inputText[i].addEventListener('input', function(){
-          this.value = this.value.replace(/[A-Za-z]+$/g, '');
-        });
-      }
+
+  for (var i = 0; i < inputText.length; i++) {
+    inputText[i].addEventListener('input', function () {
+      this.value = this.value.replace(/[A-Za-z]+$/g, '');
+    });
+  }
 
   function setCursorPosition(pos, elem) {
     elem.focus();
+
     if (elem.setSelectionRange) {
       elem.setSelectionRange(pos, pos);
     } else if (elem.createTextRange) {
-        var range = elem.createTextRange();
-        range.collapse(true);
-        range.moveEnd("character", pos);
-        range.moveStart("character", pos);
-        range.select()
+      var range = elem.createTextRange();
+      range.collapse(true);
+      range.moveEnd("character", pos);
+      range.moveStart("character", pos);
+      range.select();
     }
-  };
+  }
 
   function mask(event) {
     var matrix = "+7 (___) ___ ____",
         i = 0,
         def = matrix.replace(/\D/g, ""),
         val = this.value.replace(/\D/g, "");
+
     if (def.length >= val.length) {
       val = def;
     }
-    this.value = matrix.replace(/./g, function(a) {
-        return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+
+    this.value = matrix.replace(/./g, function (a) {
+      return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a;
     });
-   if (event.type == "blur") {
-      if (this.value.length == 2) this.value = ""
-    } else setCursorPosition(this.value.length, this)
-  };
+
+    if (event.type == "blur") {
+      if (this.value.length == 2) this.value = "";
+    } else setCursorPosition(this.value.length, this);
+  }
 
   telDesign.addEventListener("input", mask, false);
   telDesign.addEventListener("focus", mask, false);
@@ -61,28 +66,24 @@ function ajax() {
   telConsultation.addEventListener("input", mask, false);
   telConsultation.addEventListener("focus", mask, false);
   telConsultation.addEventListener("focus", mask, false);
-
-  consultationForm.addEventListener('submit', function(e){
+  consultationForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    consultationForm.appendChild(statusMessage);
+    consultationForm.appendChild(statusMessage); // ajax
 
-    // ajax
-
-    let request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
     request.open("POST", 'server.php');
-
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    let formData = new FormData (consultationForm);
+    var formData = new FormData(consultationForm);
     request.send(formData);
 
     request.onreadystatechange = function () {
-      if (request.readyState<4) {
+      if (request.readyState < 4) {
         statusMessage.innerHTML = "<p>" + message.loading + "</p> " + "<img src='./img/load.gif'>";
         statusMessage.style.textAlign = 'center';
         statusMessage.style.marginTop = '30px';
-      } else if (request.readyState === 4){
+      } else if (request.readyState === 4) {
         if (request.status == 200) {
-          statusMessage.innerHTML = "<p>" + message.success + "</p>" + "<img src='./img/cat.png'>";
+          statusMessage.innerHTML = "<p>" + message.success + "</p>";
           statusMessage.style.textAlign = 'center';
           statusMessage.style.marginTop = '30px';
         } else {
@@ -93,31 +94,27 @@ function ajax() {
       }
     };
   });
-
-  designForm.addEventListener('submit', function(e){
+  designForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    designForm.appendChild(statusMessage);
+    designForm.appendChild(statusMessage); // ajax
 
-    // ajax
-
-    let request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
     request.open("POST", 'server.php');
-
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    let formData = new FormData (designForm);
+    var formData = new FormData(designForm);
     request.send(formData);
 
     request.onreadystatechange = function () {
-      if (request.readyState<4) {
-        statusMessage.innerHTML =message.loading;
+      if (request.readyState < 4) {
+        statusMessage.innerHTML = message.loading;
         statusMessage.style.textAlign = 'center';
         statusMessage.style.marginTop = '30px';
-      } else if (request.readyState === 4){
+      } else if (request.readyState === 4) {
         if (request.status == 200) {
           formNoneDesign.style.display = 'none';
           statusMessage.innerHTML = message.success;
           statusMessage.style.textAlign = 'center';
-          statusMessage.style.marginTop = '30px';         
+          statusMessage.style.marginTop = '30px';
         } else {
           formNoneDesign.style.display = 'none';
           statusMessage.innerHTML = message.failure;
@@ -127,27 +124,22 @@ function ajax() {
       }
     };
   });
-
-
-  popupConsultationForm.addEventListener('submit', function(e){
+  popupConsultationForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    popupConsultationForm.appendChild(statusMessage);
+    popupConsultationForm.appendChild(statusMessage); // ajax
 
-    // ajax
-
-    let request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
     request.open("POST", 'server.php');
-
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    let formData = new FormData (popupConsultationForm);
+    var formData = new FormData(popupConsultationForm);
     request.send(formData);
 
     request.onreadystatechange = function () {
-      if (request.readyState<4) {
-        statusMessage.innerHTML =message.loading;
+      if (request.readyState < 4) {
+        statusMessage.innerHTML = message.loading;
         statusMessage.style.textAlign = 'center';
         statusMessage.style.marginTop = '30px';
-      } else if (request.readyState === 4){
+      } else if (request.readyState === 4) {
         if (request.status == 200) {
           formNoneConsultation.style.display = 'none';
           statusMessage.innerHTML = message.success;
@@ -161,7 +153,7 @@ function ajax() {
         }
       }
     };
-  }); 
+  });
 }
 
 module.exports = ajax;
